@@ -1,0 +1,29 @@
+<!--ul tag that contains all of the to-dos in this list.
+  *ngFor="let todo of todos" which means "for each item in my list"
+  This is followed by [class.completed]="todo.completed",
+   which means "if a particular item has been completed, then assign its value as true."
+  another *ngFor statement that iterates over all items in this list and
+   assigns them values based on whether they are complete or not: <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+     Then there's a span tag inside of each li element called .todo-text,
+      which displays text from each individual task: {{todo.text}}
+      The code is a simple to-do list with an undo button and a complete button.
+  -->
+<div class="todo-list">
+  <h2>To-Do List</h2>
+  <ul>
+    <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+      <span class="todo-text">{{todo.text}}</span>
+      <div class="button-group">
+        <button class="button button-toggle" (click)="toggleCompleted(todo)">
+          {{todo.completed ? 'Undo' : 'Complete'}}
+        </button>
+        <button class="button button-remove" (click)="removeTodo(todo)">Remove</button>
+      </div>
+    </li>
+  </ul>
+  <div class="add-todo">
+    <input type="text" placeholder="Add new to-do" [(ngModel)]="newTodoText">
+    <button class="button button-add" (click)="addTodo()">Add</button>
+  </div>
+</div>
+
